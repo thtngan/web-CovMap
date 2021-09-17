@@ -25,4 +25,4 @@ La carte aide les gens à trouver et à détecter les problèmes liés à l'épi
 - Vũ Đức Hứng - 19126006
 - Nguyễn Ngọc Nhung - 19126056
 
-
+## Lien précédent: https://github.com/MyrtilleKim/CovMap
