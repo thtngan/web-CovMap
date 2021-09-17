@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Direction</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="css/mapStyle.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/867a38eeb9.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <script>var searchBox = false;</script>
+    <div id="preloader"></div>
+    <div id="mySidebar" class="sidebar">
+        <div class="tab">
+            <button class="tablinks" data-bs-toggle="tooltip" data-bs-placement="right" title="Page d'accueil"><a href="./map.html"><i class="fas fa-home"></i></a></button>
+            <button class="tablinks active" data-bs-toggle="tooltip" data-bs-placement="right" title="Trouver le chemin"><a href="./direction.html"><i class="fas fa-search-location"></i></a></button>
+            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#report" data-bs-toggle="tooltip" data-bs-placement="right" title="Reportage"><i
+                class="fas fa-exclamation-triangle"></i></button>
+            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="right" title="Regarder les informations"><i class="fas fa-database"></i></button>
+            <button class="tablinks"><a href="./statistiques.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Statistiques"><i class="far fa-chart-bar"></i></a></button>
+            <button class="tablinks"><a href="./about.html" data-bs-toggle="tooltip" data-bs-placement="right" title="À propos de nous"><i class="fas fa-info-circle"></i></a></button>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">REPORTAGE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form class="login-form needs-validation" novalidate action="#" >
+                    <div class="modal-body">
+                        <div class="mb-3 has-validation">
+                            <input class="form-control" type="text" placeholder="Le lieu de signlement" value="235 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh"
+                                aria-label="default input example" required>
+                            <div class="invalid-feedback">
+                                Entrez le lieu de signlement, s'il vous plait
+                            </div>
+                        </div>
+                        <h4>La raison</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Reason" id="Reason1" value="option1"
+                                checked>
+                            <label class="form-check-label" for="Reason1">
+                                Les immigrants illégales
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Reason" id="Reason2" value="option2">
+                            <label class="form-check-label" for="Reason2">
+                                Les patients COVID-19
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Reason" id="Reason3" value="option3">
+                            <label class="form-check-label" for="Reason3">
+                                Les personne suspectée d'être infectée
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Reason" id="Reason4" value="option4">
+                            <label class="form-check-label" for="Reason4">
+                                <div class="row">
+                                    <div class="col-3">Autres</div>
+                                    <div class="col-9 mb-3 has-validation">
+                                        <input class="form-control form-control-sm" type="text"
+                                            aria-label=".form-control-sm example" id="other-reason" disabled required>
+                                        <div class="invalid-feedback">
+                                            Entrez la raison, s'il vous plait
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="mb-3 has-validation">
+                            <label for="note" class="form-label">
+                                <h4>Noter</h4>
+                            </label>
+                            <textarea class="form-control" rows="3" placeholder="Description en détail" name="content"
+                                id="note" required></textarea>
+                            <div class="invalid-feedback">
+                                Décrivez en détail, s'il vous plait
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-danger" onsubmit="direction.reload();"
+                            id="btnReport">Reporter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">LES INFORMATIONS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <h1>LES INFORMATIONS</h1>
+                    <input type="checkbox" id="loca1" onclick="showMe('virus','loca1')">
+                    <label for="local1"> <img src="images/virus.png" id="hinh"> Zones avec des points
+                        épidémiologiques</label><br><br>
+
+                    <input type="checkbox" id="loca2" onclick="showMe('barrier','loca2')">
+                    <label for="loca2"> <img src="images/barrier.png" id="hinh"> Zones avec des points de
+                        blocage</label><br><br>
+
+                    <input type="checkbox" id="loca3" onclick="showMe('vaccine','loca3')">
+                    <label for="vehicle3"> <img src="images/h3.png" id="hinh"> Lieu
+                        d'essai</label><br><br>
+
+                    <input type="checkbox" id="loca4" onclick="showMe('hospital','loca4')">
+                    <label for="loca4"> <img src="images/588hospital_100778.png" id="hinh"> Hôpitaux, établissements
+                        médicaux</label><br><br>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">REGARDER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="map">
+        <div id="virus" style="display: none">
+            <img src="images/virus.png" id="vr1" class="imgVirus">
+            <img src="images/virus.png" id="vr2" class="imgVirus">
+            <img src="images/virus.png" id="vr3" class="imgVirus">
+            <img src="images/virus.png" id="vr4" class="imgVirus">
+            <img src="images/virus.png" id="vr5" class="imgVirus">
+            <img src="images/virus.png" id="vr6" class="imgVirus">
+            <img src="images/virus.png" id="vr7" class="imgVirus">
+            <img src="images/virus.png" id="vr8" class="imgVirus">
+            <img src="images/virus.png" id="vr9" class="imgVirus">
+            <img src="images/virus.png" id="vr10" class="imgVirus">
+            <img src="images/virus.png" id="vr11" class="imgVirus">
+            <img src="images/virus.png" id="vr12" class="imgVirus">
+            <img src="images/virus.png" id="vr13" class="imgVirus">
+            <img src="images/virus.png" id="vr14" class="imgVirus">
+            <img src="images/virus.png" id="vr15" class="imgVirus">
+            <img src="images/virus.png" id="vr16" class="imgVirus">
+            <img src="images/virus.png" id="vr17" class="imgVirus">
+            <img src="images/virus.png" id="vr18" class="imgVirus">
+            <img src="images/virus.png" id="vr19" class="imgVirus">
+            <img src="images/virus.png" id="vr20" class="imgVirus">
+            <img src="images/virus.png" id="vr21" class="imgVirus">
+            <img src="images/virus.png" id="vr22" class="imgVirus">
+            <img src="images/virus.png" id="vr23" class="imgVirus">
+            <img src="images/virus.png" id="vr24" class="imgVirus">
+            <img src="images/virus.png" id="vr25" class="imgVirus">
+            <img src="images/virus.png" id="vr26" class="imgVirus">
+            <img src="images/virus.png" id="vr27" class="imgVirus">
+            <img src="images/virus.png" id="vr28" class="imgVirus">
+            <img src="images/virus.png" id="vr29" class="imgVirus">
+            <img src="images/virus.png" id="vr30" class="imgVirus">
+            <img src="images/virus.png" id="vr31" class="imgVirus">
+            <img src="images/virus.png" id="vr32" class="imgVirus">
+            <img src="images/virus.png" id="vr33" class="imgVirus">
+            <img src="images/virus.png" id="vr34" class="imgVirus">
+            <img src="images/virus.png" id="vr35" class="imgVirus">
+            <img src="images/virus.png" id="vr36" class="imgVirus">
+            <img src="images/virus.png" id="vr37" class="imgVirus">
+            <img src="images/virus.png" id="vr38" class="imgVirus">
+            <img src="images/virus.png" id="vr39" class="imgVirus">
+            <img src="images/virus.png" id="vr40" class="imgVirus">
+            <img src="images/virus.png" id="vr41" class="imgVirus">
+            <img src="images/virus.png" id="vr42" class="imgVirus">
+            <img src="images/virus.png" id="vr43" class="imgVirus">
+            <img src="images/virus.png" id="vr44" class="imgVirus">
+            <img src="images/virus.png" id="vr45" class="imgVirus">
+            <img src="images/virus.png" id="vr46" class="imgVirus">
+            <img src="images/virus.png" id="vr47" class="imgVirus">
+            <img src="images/virus.png" id="vr48" class="imgVirus">
+            <img src="images/virus.png" id="vr49" class="imgVirus">
+            <img src="images/virus.png" id="vr50" class="imgVirus">
+        </div>
+        <div id="barrier" style="display: none">
+            <img src="images/barrier.png" id="br1" class="imgBarrier">
+            <img src="images/barrier.png" id="br2" class="imgBarrier">
+            <img src="images/barrier.png" id="br3" class="imgBarrier">
+            <img src="images/barrier.png" id="br4" class="imgBarrier">
+            <img src="images/barrier.png" id="br5" class="imgBarrier">
+            <img src="images/barrier.png" id="br6" class="imgBarrier">
+            <img src="images/barrier.png" id="br7" class="imgBarrier">
+            <img src="images/barrier.png" id="br8" class="imgBarrier">
+            <img src="images/barrier.png" id="br9" class="imgBarrier">
+            <img src="images/barrier.png" id="br10" class="imgBarrier">
+            <img src="images/barrier.png" id="br11" class="imgBarrier">
+            <img src="images/barrier.png" id="br12" class="imgBarrier">
+            <img src="images/barrier.png" id="br13" class="imgBarrier">
+            <img src="images/barrier.png" id="br14" class="imgBarrier">
+            <img src="images/barrier.png" id="br15" class="imgBarrier">
+            <img src="images/barrier.png" id="br16" class="imgBarrier">
+            <img src="images/barrier.png" id="br17" class="imgBarrier">
+            <img src="images/barrier.png" id="br18" class="imgBarrier">
+            <img src="images/barrier.png" id="br19" class="imgBarrier">
+            <img src="images/barrier.png" id="br20" class="imgBarrier">
+            <img src="images/barrier.png" id="br21" class="imgBarrier">
+            <img src="images/barrier.png" id="br22" class="imgBarrier">
+            <img src="images/barrier.png" id="br23" class="imgBarrier">
+            <img src="images/barrier.png" id="br24" class="imgBarrier">
+            <img src="images/barrier.png" id="br25" class="imgBarrier">
+            <img src="images/barrier.png" id="br26" class="imgBarrier">
+            <img src="images/barrier.png" id="br27" class="imgBarrier">
+            <img src="images/barrier.png" id="br28" class="imgBarrier">
+            <img src="images/barrier.png" id="br29" class="imgBarrier">
+            <img src="images/barrier.png" id="br30" class="imgBarrier">
+            <img src="images/barrier.png" id="br31" class="imgBarrier">
+            <img src="images/barrier.png" id="br32" class="imgBarrier">
+            <img src="images/barrier.png" id="br33" class="imgBarrier">
+            <img src="images/barrier.png" id="br34" class="imgBarrier">
+            <img src="images/barrier.png" id="br35" class="imgBarrier">
+            <img src="images/barrier.png" id="br36" class="imgBarrier">
+            <img src="images/barrier.png" id="br37" class="imgBarrier">
+            <img src="images/barrier.png" id="br38" class="imgBarrier">
+            <img src="images/barrier.png" id="br39" class="imgBarrier">
+            <img src="images/barrier.png" id="br40" class="imgBarrier">
+        </div>
+        <div id="hospital" style="display: none">
+            <img src="images/588hospital_100778.png" id="hp1" class="imgHospital">
+            <img src="images/588hospital_100778.png" id="hp2" class="imgHospital">
+            <img src="images/588hospital_100778.png" id="hp3" class="imgHospital">
+            <img src="images/588hospital_100778.png" id="hp4" class="imgHospital">
+        </div>
+        <div id="vaccine" style="display: none">
+            <img src="images/h3.png" id="vc1" class="imgVac">
+            <img src="images/h3.png" id="vc2" class="imgVac">
+            <img src="images/h3.png" id="vc3" class="imgVac">
+            <img src="images/h3.png" id="vc4" class="imgVac">
+            <img src="images/h3.png" id="vc5" class="imgVac">
+            <img src="images/h3.png" id="vc6" class="imgVac">
+        </div>
+        <div id="main">
+            <button class="openbtn" onclick="clickNav()">&#9776;</button>
+        </div>
+    </div>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+        type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <script>
+            var loader = document.getElementById("preloader");
+            window.addEventListener("load", () => {
+            loader.style.display = "none";
+            })
+              </script>
+    <script src="js/searchScript.js"></script>
+    <script src="js/showIcon.js"></script>
+</body>
+
+</html>

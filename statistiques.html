@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Statistiques et rapports</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link href="css/staticStyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rasa:ital,wght@1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/867a38eeb9.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<style>
+    .chart-container {
+        width: 80%;
+        height: 60%;
+        margin: auto;
+    }
+</style>
+
+<body>
+    <div id="preloader"></div>
+    <div class="header">
+        <a href="./map.html"><i class="fas fa-chevron-circle-left"></i></i></a>
+        <h1>CovMap</h1>
+    </div>
+
+    <!-- <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="tab">
+            <button class="tablinks active">
+                <i class="far fa-chart-bar"></i>
+            </button>
+            <button class="tablinks"><a href="./direction.html"><i class="fas fa-search-location"></i></a></button>
+            <button class="tablinks" onclick="openCity(event, 'Report')"><i
+                    class="fas fa-exclamation-triangle"></i></button>
+            <button class="tablinks" onclick="openCity(event, 'About')"><i class="fas fa-info-circle"></i></button>
+        </div>
+    </div> -->
+
+    <h2>Données COVID-19 au Vietnam</h2>
+    <!--Statistique-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-md-3">
+                <div class="counter red">
+                    <h3>TOTAL DES CAS DE COVID-19</h3>
+                    <span class="counter-value">550996</span>
+                    <div class="counter-icon"><i class="fa fa-frown"></i></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3">
+                <div class="counter yellow">
+                    <h3>NOMBRE DE CAS EN TRAITEMENT</h3>
+                    <span class="counter-value">225581</span>
+                    <div class="counter-icon"><i class="fa fa-tired"></i></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3">
+                <div class="counter green">
+                    <h3>NOMBRE DE CAS À GUÉRIR</h3>
+                    <span class="counter-value">311710</span>
+                    <div class="counter-icon"><i class="fa fa-laugh-beam"></i></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3">
+                <div class="counter gray">
+                    <h3>NOMBRE DE CAS CAS DE DECES</h3>
+                    <span class="counter-value">13701</span>
+                    <div class="counter-icon"><i class="fa fa-dizzy"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <h2>Données COVID-19 à HCMV</h2>
+
+    <div class="container-sm">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center">Nombre de cas positifs au COVID-19</h3>
+                <p class="text-center">au cours des 7 derniers jours</p>
+                <div class="card chart-container">
+                    <canvas id="myChart1" width="10px" height="10px"></canvas>
+                </div>
+
+            </div>
+            <div class="col">
+                <h3 class="text-center">Total des cas positifs de COVID-19</h3>
+                <p class="text-center">au cours des 5 derniers jours</p>
+                <div class="card chart-container">
+                    <canvas id="myChart2" width="10px" height="10px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3 class="text-center">Nombre de cas positifs par région</h3>
+    <div class="card chart-container">
+        <canvas id="myChart3" width="5px" height="5px"></canvas>
+    </div>
+
+    <footer>
+        <div class="navigation text-center">
+            <a href="./map.html">Page d'accueil</a> <i class="fas fa-circle"></i>
+            <a href="./statistiques.html">Statistiques</a> <i class="fas fa-circle"></i>
+            <a href="./direction.html">Trouver le chemin</a> <i class="fas fa-circle"></i>
+            <a href="./about.html">À propos de nous</a>
+        </div>
+        <!--Chỉnh lại đường dẫn điều hướng-->
+        <p class="text-center">Conçu avec <i class="far fa-heart" style="color: #ff9900"></i> by DGROUP</p>
+        <p class="rights">DGROUP &copy; Tous les droits sont réservés.</p>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-4 text-center">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <h5>CONTACT</h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-envelope"></i></td>
+                            <td>Dgroup@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-phone-alt"></i></td>
+                            <td>(84)13 456 789</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 col-sm-8 text-center">
+                <h5>ABONNEMENT</h5>
+                <p>S'abonnez ici pour recevoir les dernières annonces de CovMap</p>
+                <form class="input-group mb-3">
+                    <input type="text" class="form-control subcribe" placeholder="Email" aria-label="Email"
+                        aria-describedby="button-addon2" id="mail">
+                    <button type="submit" class="btn btn-outline-secondary" id="button-addon2"><i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/static.js"></script>
+<script src="js/mapScript.js"></script>
+<script>
+    var loader = document.getElementById("preloader");
+    window.addEventListener("load", () => {
+    loader.style.display = "none";
+    })
+      </script>
+</html>
