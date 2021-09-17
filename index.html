@@ -20,13 +20,18 @@
     <div id="preloader"></div>
     <div id="mySidebar" class="sidebar">
         <div class="tab">
-            <button class="tablinks active" data-bs-toggle="tooltip" data-bs-placement="right" title="Page d'accueil"><a href="./map.html"><i class="fas fa-home"></i></a></button>
-            <button class="tablinks" data-bs-toggle="tooltip" data-bs-placement="right" title="Trouver le chemin"><a href="./direction.html"><i class="fas fa-search-location"></i></a></button>
-            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#report" data-bs-toggle="tooltip" data-bs-placement="right" title="Reportage"><i
-                class="fas fa-exclamation-triangle"></i></button>
-            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="right" title="Regarder les informations"><i class="fas fa-database"></i></button>
-            <button class="tablinks"><a href="./statistiques.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Statistiques"><i class="far fa-chart-bar"></i></a></button>
-            <button class="tablinks"><a href="./about.html" data-bs-toggle="tooltip" data-bs-placement="right" title="À propos de nous"><i class="fas fa-info-circle"></i></a></button>
+            <button class="tablinks active" data-bs-toggle="tooltip" data-bs-placement="right" title="Page d'accueil"><a
+                    href="./index.html"><i class="fas fa-home"></i></a></button>
+            <button class="tablinks" data-bs-toggle="tooltip" data-bs-placement="right" title="Trouver le chemin"><a
+                    href="./direction.html"><i class="fas fa-search-location"></i></a></button>
+            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#report" data-bs-toggle="tooltip"
+                data-bs-placement="right" title="Reportage"><i class="fas fa-exclamation-triangle"></i></button>
+            <button class="tablinks" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip"
+                data-bs-placement="right" title="Regarder les informations"><i class="fas fa-database"></i></button>
+            <button class="tablinks"><a href="./statistiques.html" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="Statistiques"><i class="far fa-chart-bar"></i></a></button>
+            <button class="tablinks"><a href="./about.html" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="À propos de nous"><i class="fas fa-info-circle"></i></a></button>
         </div>
     </div>
     </div>
@@ -41,7 +46,8 @@
                 <form class="login-form needs-validation" novalidate action="#">
                     <div class="modal-body">
                         <div class="mb-3 has-validation">
-                            <input class="form-control" type="text" placeholder="Le lieu de signlement" value="235 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh"
+                            <input class="form-control" type="text" placeholder="Le lieu de signlement"
+                                value="235 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh"
                                 aria-label="default input example" required>
                             <div class="invalid-feedback">
                                 Entrez le lieu de signlement, s'il vous plait
@@ -96,7 +102,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-danger" onsubmit="alert('Vous avez soumis avec succès'); map.reload();"
+                        <button type="submit" class="btn btn-danger"
+                            onsubmit="alert('Vous avez soumis avec succès'); map.reload();"
                             id="btnReport">Reporter</button>
                     </div>
                 </form>
@@ -111,7 +118,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <h1>LES INFORMATIONS</h1>
+                    <h1>LES INFORMATIONS</h1>
                     <input type="checkbox" id="loca1" onclick="showMe('virus','loca1')">
                     <label for="local1"> <img src="images/virus.png" id="hinh"> Zones avec des points
                         épidémiologiques</label><br><br>
@@ -259,9 +266,9 @@
     <script>
         var loader = document.getElementById("preloader");
         window.addEventListener("load", () => {
-        loader.style.display = "none";
+            loader.style.display = "none";
         })
-          </script>
+    </script>
     <script src="js/searchScript.js"></script>
     <script src="js/showIcon.js"></script>
 </body>
